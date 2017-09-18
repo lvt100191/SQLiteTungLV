@@ -21,7 +21,7 @@ public class UserDao {
     
     static Logger logger = Logger.getLogger(UserDao.class.getName());
     
-    public static void createTable() {
+    public static void createTable() throws SQLException {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -43,12 +43,13 @@ public class UserDao {
                     + " modify_by            INT, "
                     + " note         TEXT)";
             stmt.executeUpdate(sql);
-            //insert
-            stmt.close();
-            c.close();
             
         } catch (Exception ex) {
             logger.error("them moi nguoi dung error");
+        }
+        finally {
+            stmt.close();
+            c.close();
         }
     }
     

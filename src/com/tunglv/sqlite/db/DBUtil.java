@@ -72,7 +72,7 @@ Connection c = null;
     //kiem tra bang du lieu da tao chua
     //tableName : ten bang
     //true: bang da ton tai
-    public static boolean tableExists(String tableName) {
+    public static boolean tableExists(String tableName) throws SQLException {
         Connection conn = null;
         try {
             conn = connectDB(Config.DB_NAME);
@@ -83,6 +83,8 @@ Connection c = null;
             }
         } catch (SQLException ex) {
             logger.error("loi kiem tra bang du lieu");
+        }        finally {
+            conn.close();
         }
         return false;
     }
