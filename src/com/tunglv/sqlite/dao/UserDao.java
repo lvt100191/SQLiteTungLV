@@ -9,6 +9,7 @@ import com.tunglv.sqlite.db.DBUtil;
 import com.tunglv.sqlite.entity.User;
 import com.tunglv.sqlite.util.Config;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.apache.log4j.Logger;
@@ -55,20 +56,20 @@ public class UserDao {
     
     public static void insert(User user) throws SQLException {
         Connection c = null;
-        Statement stmt = null;
+        PreparedStatement  pst = null;
         
         try {
             c = DBUtil.connectDB(Config.DB_NAME);
-            stmt = c.createStatement();
-            String sql = "INSERT INTO " + User.TABLE_NAME
+            
+            String query = "INSERT INTO " + User.TABLE_NAME
                     + "(ID, fullname,date_of_birth,address,username,password,create_date,create_by,expire_date,modify_date,modify_by,note) "
-                    + "VALUES (1, 'Lam Viet Tung', '', 'BSD', 'tunglv','123456','','','','','','' );";
-            stmt.executeUpdate(sql);
-            c.commit();
+                    + "VALUES (2, 'Lam Viet Tung', '', 'BSD', 'tunglv','123456','','','','','','' );";
+            pst = c.prepareStatement(query);
+            pst.executeUpdate();
         } catch (Exception e) {
             logger.error(e);
         } finally {
-            stmt.close();
+            pst.close();
             c.close();
         }
     }
