@@ -5,7 +5,7 @@
  */
 package com.tunglv.sqlite.main;
 
-import com.tunglv.sqlite.ui.SearchUserAddress;
+import com.tunglv.sqlite.ui.DashBoard;
 
 /**
  *
@@ -99,7 +99,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         this.dispose();
-        new SearchUserAddress();        // TODO add your handling code here:
+        new DashBoard();        // TODO add your handling code here:
     }//GEN-LAST:event_btLoginActionPerformed
 
     /**
