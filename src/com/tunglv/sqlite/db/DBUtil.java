@@ -5,12 +5,17 @@
  */
 package com.tunglv.sqlite.db;
 
+import com.tunglv.sqlite.util.Config;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -20,35 +25,76 @@ import org.apache.log4j.Logger;
 public class DBUtil {
 
     static Logger logger = Logger.getLogger(DBUtil.class.getName());
-    
+
     public static void main(String[] args) {
-        
+Connection c = null;
+        Statement stmt = null;
+        try {
+            c = connectDB("tunglv.db");
+
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM TBL_USER;");
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("fullname");
+
+
+                System.out.println("ID = " + id);
+                System.out.println("NAME = " + name);
+                System.out.println();
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Operation done successfully");
     }
 
-    public static Statement connectDB(String fileName) throws SQLException {
-        Connection c = null;
-        Statement stmt = null;
+    //tao ket noi den DB
+    public static Connection connectDB(String fileName) throws SQLException {
+        Connection con = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + fileName);
+            con = DriverManager.getConnection("jdbc:sqlite:" + fileName);
             logger.info("ket noi thanh cong");
-            stmt = c.createStatement();
         } catch (Exception e) {
             logger.error("Loi ket noi den co so du lieu");
-            stmt.close();
-            c.close();
+            con.close();
         }
-        return stmt;
+        return con;
     }
 
-    public static void insert() {
+    //kiem tra bang du lieu da tao chua
+    //tableName : ten bang
+    //true: bang da ton tai
+    public static boolean tableExists(String tableName) {
+        Connection conn = null;
+        try {
+            conn = connectDB(Config.DB_NAME);
+            DatabaseMetaData md = conn.getMetaData();
+            ResultSet rs = md.getTables(null, null, tableName, null);
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException ex) {
+            logger.error("loi kiem tra bang du lieu");
+        }
+        return false;
+    }
+
+    public static void insertTest() {
         Connection c = null;
         Statement stmt = null;
 
         try {
 
-            stmt = connectDB("test.db");
+            c = connectDB("test.db");
+            stmt = c.createStatement();
             String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
                     + "VALUES (1, 'Paul', 32, 'California', 20000.00 );";
             stmt.executeUpdate(sql);
@@ -75,14 +121,12 @@ public class DBUtil {
         System.out.println("Records created successfully");
     }
 
-    public static void createTacle() {
+    public static void createTableTest() {
         Connection c = null;
         Statement stmt = null;
 
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            System.out.println("Opened database successfully");
+            c = connectDB("test.db");
 
             stmt = c.createStatement();
             String sql = "CREATE TABLE COMPANY "
@@ -101,14 +145,11 @@ public class DBUtil {
         System.out.println("Table created successfully");
     }
 
-    public static void selectTable() {
+    public static void selectTableTest() {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+            c = connectDB("test.db");
 
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM COMPANY;");

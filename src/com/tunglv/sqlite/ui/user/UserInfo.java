@@ -6,9 +6,13 @@
 package com.tunglv.sqlite.ui.user;
 
 
+import com.tunglv.sqlite.dao.UserDao;
 import com.tunglv.sqlite.db.DBUtil;
+import com.tunglv.sqlite.entity.User;
 import com.tunglv.sqlite.util.Config;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +25,7 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author TUNGLV
  */
 public class UserInfo extends javax.swing.JFrame {
-
+  static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserInfo.class.getName());
     /**
      * Creates new form UserInfo
      */
@@ -163,11 +167,22 @@ public class UserInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDateOfBirthMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               Connection c = null;
+        Statement stmt = null;
         try {
-            DBUtil.connectDB(Config.DB_NAME);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+            User user = new User();
+            user.setFullname(txtFullName.getText());
+            if(DBUtil.tableExists(User.TABLE_NAME)){
+                //insert
+                UserDao.insert(user);
+            }else{
+                //create table
+                 UserDao.createTable();
+                //insert
+                UserDao.insert(user);
+            }       
+        } catch (Exception ex) {
+            logger.error("them moi nguoi dung error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
