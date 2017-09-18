@@ -4,28 +4,51 @@
  * and open the template in the editor.
  */
 package com.tunglv.sqlite.db;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author TUNGLV
  */
 public class DBUtil {
- public static void insert() {
+
+    static Logger logger = Logger.getLogger(DBUtil.class.getName());
+    
+    public static void main(String[] args) {
+        
+    }
+
+    public static Statement connectDB(String fileName) throws SQLException {
         Connection c = null;
         Statement stmt = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-
+            c = DriverManager.getConnection("jdbc:sqlite:" + fileName);
+            logger.info("ket noi thanh cong");
             stmt = c.createStatement();
+        } catch (Exception e) {
+            logger.error("Loi ket noi den co so du lieu");
+            stmt.close();
+            c.close();
+        }
+        return stmt;
+    }
+
+    public static void insert() {
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+
+            stmt = connectDB("test.db");
             String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
                     + "VALUES (1, 'Paul', 32, 'California', 20000.00 );";
             stmt.executeUpdate(sql);
@@ -113,5 +136,5 @@ public class DBUtil {
         }
         System.out.println("Operation done successfully");
     }
-    
+
 }
