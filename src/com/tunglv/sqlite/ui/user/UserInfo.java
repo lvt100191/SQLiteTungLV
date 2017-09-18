@@ -6,7 +6,12 @@
 package com.tunglv.sqlite.ui.user;
 
 
+import com.tunglv.sqlite.db.DBUtil;
+import com.tunglv.sqlite.util.Config;
+import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -66,6 +71,11 @@ public class UserInfo extends javax.swing.JFrame {
         jLabel5.setText("Mật khẩu");
 
         jButton1.setText("Thực hiện");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Ngày hết hạn");
 
@@ -151,6 +161,15 @@ public class UserInfo extends javax.swing.JFrame {
 
     private void txtDateOfBirthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateOfBirthMouseClicked
     }//GEN-LAST:event_txtDateOfBirthMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            DBUtil.connectDB(Config.DB_NAME);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
