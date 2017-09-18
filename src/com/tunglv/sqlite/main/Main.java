@@ -6,12 +6,17 @@
 package com.tunglv.sqlite.main;
 
 import com.tunglv.sqlite.db.DBUtil;
+import org.apache.log4j.Logger;
+
+
+
 
 /**
  *
  * @author TUNGLV
  */
 public class Main extends javax.swing.JFrame {
+static Logger log = Logger.getLogger(Main.class.getName());
 
     /**
      * Creates new form NewJFrame
@@ -98,6 +103,8 @@ public class Main extends javax.swing.JFrame {
         DBUtil.createTacle();
         DBUtil.insert();
         DBUtil.selectTable();  
+        }else{
+            log.error("thong tin dang nhap khong chinh xac");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
