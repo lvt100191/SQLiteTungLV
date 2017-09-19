@@ -9,12 +9,12 @@ package com.tunglv.sqlite.ui.user;
  *
  * @author TUNGLV
  */
-public class UserSystem extends javax.swing.JFrame {
+public class UserSearch extends javax.swing.JFrame {
 
     /**
      * Creates new form SearchUserAddress
      */
-    public UserSystem() {
+    public UserSearch() {
         initComponents();
         this.setVisible(true);
     }
@@ -36,7 +36,7 @@ public class UserSystem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search User Address");
 
-        lbUser.setText("Username");
+        lbUser.setText("Tài khoản");
 
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,9 +44,9 @@ public class UserSystem extends javax.swing.JFrame {
             }
         });
 
-        btSearch.setText("Search");
+        btSearch.setText("Tìm kiếm");
 
-        btNew.setText("New");
+        btNew.setText("Thêm mới");
         btNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNewActionPerformed(evt);
@@ -63,10 +63,10 @@ public class UserSystem extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btNew, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(btSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btNew)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +82,7 @@ public class UserSystem extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btSearch)
                             .addComponent(btNew))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
