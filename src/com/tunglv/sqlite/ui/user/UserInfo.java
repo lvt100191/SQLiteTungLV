@@ -9,6 +9,8 @@ package com.tunglv.sqlite.ui.user;
 import com.tunglv.sqlite.dao.UserDao;
 import com.tunglv.sqlite.db.DBUtil;
 import com.tunglv.sqlite.entity.User;
+import com.tunglv.sqlite.service.UserService;
+import com.tunglv.sqlite.service.impl.UserServiceImpl;
 import com.tunglv.sqlite.util.Config;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,6 +28,7 @@ import org.jdatepicker.impl.UtilDateModel;
  */
 public class UserInfo extends javax.swing.JFrame {
   static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserInfo.class.getName());
+  private UserService  userService;
     /**
      * Creates new form UserInfo
      */
@@ -193,17 +196,25 @@ public class UserInfo extends javax.swing.JFrame {
         try {
             User user = new User();
             user.setFullname(txtFullName.getText());
+            user.setDateBirth(txtDateOfBirth.getText());
+            user.setAddress(txtAddress.getText());
+            user.setUsername(txtUser.getText());
+            user.setPassword(txtPassword.getText());
+            user.setExpireDate(txtExpire.getText());
+            
+
             if(DBUtil.tableExists(User.TABLE_NAME)){
                 //insert
-                UserDao.insert(user);
+                userService = new UserServiceImpl();
+                userService.insert(user);
             }else{
                 //create table
-                 UserDao.createTable();
+                 userService.createTable();
                 //insert
-                UserDao.insert(user);
+                userService.insert(user);
             }       
         } catch (Exception ex) {
-            logger.error("them moi nguoi dung error");
+            logger.error("insert user error"+ex.getMessage());
         }
     }//GEN-LAST:event_btExcuteActionPerformed
 

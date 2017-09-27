@@ -14,14 +14,14 @@ import java.util.Date;
 public class User {
     public static final String TABLE_NAME = "TBL_USER";
     protected String fullname;
-    protected Date dateBirth;
+    protected String dateBirth;
     protected String address;
     protected String username;
     protected String password;
-    protected Date createDate;
+    protected String createDate;
     protected String createBy;
-    protected Date expireDate;
-    protected Date modifyDate;
+    protected String expireDate;
+    protected String modifyDate;
     protected String modifyBy;
     protected String note;
 
@@ -33,13 +33,7 @@ public class User {
         this.fullname = fullname;
     }
 
-    public Date getDateBirth() {
-        return dateBirth;
-    }
-
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
-    }
+ 
 
     public String getAddress() {
         return address;
@@ -65,13 +59,7 @@ public class User {
         this.password = password;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+ 
 
     public String getCreateBy() {
         return createBy;
@@ -81,21 +69,41 @@ public class User {
         this.createBy = createBy;
     }
 
-    public Date getExpireDate() {
+    public String getDateBirth() {
+        return dateBirth;
+    }
+
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
-    public Date getModifyDate() {
+    public String getModifyDate() {
         return modifyDate;
     }
 
-    public void setModifyDate(Date modifyDate) {
+    public void setModifyDate(String modifyDate) {
         this.modifyDate = modifyDate;
     }
+
+
+
+
 
     public String getModifyBy() {
         return modifyBy;

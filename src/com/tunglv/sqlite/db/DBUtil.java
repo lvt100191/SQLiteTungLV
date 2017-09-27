@@ -26,8 +26,10 @@ public class DBUtil {
 
     static Logger logger = Logger.getLogger(DBUtil.class.getName());
 
-    public static void main(String[] args) {
-Connection c = null;
+    public static void main(String[] args) throws SQLException {
+        //xoa bang
+        //dropTable("TBL_USER");
+                Connection c = null;
         Statement stmt = null;
         try {
             c = connectDB("tunglv.db");
@@ -37,12 +39,8 @@ Connection c = null;
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String name = rs.getString("fullname");
-
-
-                System.out.println("ID = " + id);
-                System.out.println("NAME = " + name);
-                System.out.println();
+                String user = rs.getString("username");
+                System.out.println("id = "+id +" user = "+user);
             }
             rs.close();
             stmt.close();
@@ -78,12 +76,12 @@ Connection c = null;
             conn = connectDB(Config.DB_NAME);
             DatabaseMetaData md = conn.getMetaData();
             ResultSet rs = md.getTables(null, null, tableName, null);
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
             }
         } catch (SQLException ex) {
             logger.error("loi kiem tra bang du lieu");
-        }        finally {
+        } finally {
             conn.close();
         }
         return false;
@@ -176,6 +174,24 @@ Connection c = null;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        }
+        System.out.println("Operation done successfully");
+    }
+
+    public static void dropTable(String tableName) throws SQLException {
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            c = connectDB("test.db");
+
+            stmt = c.createStatement();
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        } finally {
+            stmt.close();
+            c.close();
         }
         System.out.println("Operation done successfully");
     }

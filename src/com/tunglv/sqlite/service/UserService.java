@@ -5,10 +5,16 @@
  */
 package com.tunglv.sqlite.service;
 
+import com.tunglv.sqlite.entity.User;
+
 /**
  *
  * @author TUNGLV
  */
 public interface UserService {
+
+    public void insert(User user);
+
+    public void createTable();
     
 }
