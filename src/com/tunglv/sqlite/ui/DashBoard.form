@@ -28,7 +28,7 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btUserSystem" max="32767" attributes="0"/>
-                  <Component id="btEmailManage" max="32767" attributes="0"/>
+                  <Component id="btCustomerManage" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="244" max="32767" attributes="0"/>
           </Group>
@@ -40,7 +40,7 @@
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btUserSystem" min="-2" pref="59" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="btEmailManage" min="-2" pref="55" max="-2" attributes="0"/>
+              <Component id="btCustomerManage" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace pref="114" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -55,12 +55,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btUserSystemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btEmailManage">
+    <Component class="javax.swing.JButton" name="btCustomerManage">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; email"/>
+        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; kh&#xe1;ch h&#xe0;ng"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEmailManageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCustomerManageActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

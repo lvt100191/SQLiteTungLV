@@ -36,10 +36,12 @@ public class FileTxt {
                     Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(line);
                     while (m.find()) {
                         String mail = m.group();
-                        char end = mail.charAt(mail.length() - 1);
+                        char end = mail.charAt(mail.length()-1);
                         if (end == '.') {
                             String mailstr = mail.substring(0, mail.length() - 2);
-                            bufferedWriter.write(mailstr + ";");
+                            bufferedWriter.write(mailstr + ";"+"\n");
+                        }else{
+                            bufferedWriter.write(mail+ ";"+"\n");
                         }
                     }
                 }
