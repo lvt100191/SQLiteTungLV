@@ -6,6 +6,7 @@
 package com.tunglv.sqlite.ui;
 
 import com.tunglv.sqlite.ui.customer.CustomerSearch;
+import com.tunglv.sqlite.ui.mail.MailSearchAndAddNew;
 import com.tunglv.sqlite.ui.user.UserSearch;
 
 /**
@@ -33,6 +34,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         btUserSystem = new javax.swing.JButton();
         btCustomerManage = new javax.swing.JButton();
+        btEmailManage = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DashBoard");
@@ -51,6 +53,13 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
+        btEmailManage.setText("Quản lý Email");
+        btEmailManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmailManageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,13 +69,17 @@ public class DashBoard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btUserSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCustomerManage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(btEmailManage, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(btUserSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btEmailManage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btUserSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
                 .addComponent(btCustomerManage, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(114, Short.MAX_VALUE))
@@ -85,9 +98,16 @@ public class DashBoard extends javax.swing.JFrame {
         new CustomerSearch();
     }//GEN-LAST:event_btCustomerManageActionPerformed
 
+    private void btEmailManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmailManageActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new MailSearchAndAddNew();
+    }//GEN-LAST:event_btEmailManageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCustomerManage;
+    private javax.swing.JButton btEmailManage;
     private javax.swing.JButton btUserSystem;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package com.tunglv.sqlite.ui.mail;
 
+import com.tunglv.sqlite.ui.DashBoard;
+
 /**
  *
  * @author PMDVCNTT
@@ -35,6 +37,7 @@ public class MailSearchAndAddNew extends javax.swing.JFrame {
         btExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tìm kiếm Email");
 
         txtMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +52,11 @@ public class MailSearchAndAddNew extends javax.swing.JFrame {
         btNew.setText("Thêm mới");
 
         btExit.setText("Thoát");
+        btExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,15 +71,14 @@ public class MailSearchAndAddNew extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(55, 55, 55)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtMail)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btNew)
                         .addGap(26, 26, 26)
-                        .addComponent(btExit)
-                        .addGap(56, 56, 56))))
+                        .addComponent(btExit))
+                    .addComponent(txtMail))
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,6 +101,12 @@ public class MailSearchAndAddNew extends javax.swing.JFrame {
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMailActionPerformed
+
+    private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new DashBoard();
+    }//GEN-LAST:event_btExitActionPerformed
 
 
 

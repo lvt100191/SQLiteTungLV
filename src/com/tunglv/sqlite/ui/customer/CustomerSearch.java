@@ -41,7 +41,7 @@ public class CustomerSearch extends javax.swing.JFrame {
         txtPhone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tìm kiếm email");
+        setTitle("Tìm kiếm khách hàng");
 
         btSearch.setText("Tìm kiếm");
 
