@@ -33,8 +33,14 @@ public class GetFanPage {
         //String username = "Torano.vn";
         String username = "mshoatoeic";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date time = sdf.parse("2017-09-28");
-        getInfoPage(username, time);
+        Date time = sdf.parse("2017-09-29");
+        
+        GetFanPage fanPage = new GetFanPage();
+        Config cfg = new Config();
+        String token = cfg.USER_ACCESS_TOKEN;
+        fanPage.postCommentFeed(token,"266324126761796_1566709423389920","100191");
+        System.out.println("thuc hien thanh cong roi");
+
 
     }
 
@@ -54,7 +60,8 @@ public class GetFanPage {
      * @return
      * @throws Exception
      */
-    public static void getInfoPage(String username, Date time) throws Exception {
+    //lay danh sach binh luan cua bai dang
+    public static void getComments(String username, Date time) throws Exception {
         //lay thong tin user
         Config cfg = new Config();
         String token = cfg.USER_ACCESS_TOKEN;
@@ -151,5 +158,18 @@ public class GetFanPage {
 
         }
 
+    }
+    //binh luan mot bai viet cua trang
+    //POST /v2.10/{object-id}/comments HTTP/1.1
+    //Host: graph.facebook.com    
+    //message=This+is+a+test+comment
+    public void postCommentFeed(String token, String idFeed, String comment) throws Exception{
+        String urlPostCommentFeed = "https://graph.facebook.com/v2.10/" + idFeed + "/comments?message=" + comment + "&access_token=" + token;
+        ResponseUtil responseUtil = new ResponseUtil();
+       String rsPostCommentFeed =  responseUtil.sendPost(urlPostCommentFeed);   
+    }
+    
+    public void getInfoPage(String username){
+        
     }
 }
