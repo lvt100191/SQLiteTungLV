@@ -69,7 +69,7 @@ public class FileTxt {
     }
 
     public static ArrayList<String> getListMail() throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader("mail.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("data.txt"));
         FileOutputStream outputStream = new FileOutputStream("MailExtract.txt");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
         BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
